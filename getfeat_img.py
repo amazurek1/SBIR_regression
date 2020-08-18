@@ -93,3 +93,6 @@ if __name__ == "__main__":
     net = get_net(MODEL_WEIGHTS_PATH, MODEL_SPEC_PATH)
     sample_img = 'samples/airplane.png'
     feat = extractitem(net, mean_pixel, sample_img)
+    print(type(feat))
+    print('RIGHT ABOVE IS TYPE')
+    np.save('feat',feat)
