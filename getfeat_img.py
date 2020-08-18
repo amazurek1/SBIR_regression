@@ -91,7 +91,7 @@ def extractitem(net, mean_pixel, fname):
     
     return prediction
 
-onlyfiles = [f for f in listdir('images') if isfile(join('images', f))]
+onlyfiles = [f for f in listdir('test_images') if isfile(join('test_images', f))]
 
 for file in onlyfiles:
     if __name__ == "__main__":
@@ -100,4 +100,4 @@ for file in onlyfiles:
         feat = extractitem(net, mean_pixel, sample_img)
         print(type(feat))
         print('RIGHT ABOVE IS TYPE')
-        np.save(os.path.join('test',f'{file}'), arr)
+        np.save(os.path.join('test_images',f'{file}'), arr)
