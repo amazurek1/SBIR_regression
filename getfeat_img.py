@@ -96,8 +96,8 @@ onlyfiles = [f for f in listdir('test_images') if isfile(join('test_images', f))
 for file in onlyfiles:
     if __name__ == "__main__":
         net = get_net(MODEL_WEIGHTS_PATH, MODEL_SPEC_PATH)
-        sample_img = 'samples/airplane.png'
+        sample_img = f'test_images/{file}'
         feat = extractitem(net, mean_pixel, sample_img)
         print(type(feat))
         print('RIGHT ABOVE IS TYPE')
-        np.save(os.path.join('test_images',f'{file}'), arr)
+        np.save(os.path.join('test_images',f'{file}_np'), arr)
