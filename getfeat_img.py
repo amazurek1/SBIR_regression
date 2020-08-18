@@ -16,8 +16,11 @@ import numpy as np
 from sklearn.metrics import confusion_matrix
 from scipy.io import savemat
 import time
+from os import listdir
+from os.path import isfile, join
+import os
 
-MODEL_WEIGHTS_PATH = 'triplet1_InceptionV1_InceptionV1_halfshare_inception4e_ld256_triplet_sketchy_iter_31200.caffemodel'
+MODEL_WEIGHTS_PATH = 'model/triplet1_InceptionV1_InceptionV1_halfshare_inception4e_ld256_triplet_sketchy_iter_31200.caffemodel'
 MODEL_SPEC_PATH = 'model/deploy_images_net1_InceptionV1_InceptionV1_halfshare_inception4e_ld256_triplet_sketchy.prototxt'
 
 
@@ -88,11 +91,13 @@ def extractitem(net, mean_pixel, fname):
     
     return prediction
 
+onlyfiles = [f for f in listdir('images') if isfile(join('images', f))]
 
-if __name__ == "__main__":
-    net = get_net(MODEL_WEIGHTS_PATH, MODEL_SPEC_PATH)
-    sample_img = 'samples/airplane.png'
-    feat = extractitem(net, mean_pixel, sample_img)
-    print(type(feat))
-    print('RIGHT ABOVE IS TYPE')
-    np.save('feat',feat)
+for file in onlyfiles:
+    if __name__ == "__main__":
+        net = get_net(MODEL_WEIGHTS_PATH, MODEL_SPEC_PATH)
+        sample_img = 'samples/airplane.png'
+        feat = extractitem(net, mean_pixel, sample_img)
+        print(type(feat))
+        print('RIGHT ABOVE IS TYPE')
+        np.save(os.path.join('test',f'{file}'), arr)
